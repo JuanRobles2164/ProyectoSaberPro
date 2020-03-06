@@ -26,5 +26,14 @@ namespace ProyectoSaberPro.Controllers
 
             return View();
         }
+        public ActionResult RegistroPrimigenio()
+        {
+            ViewBag.Message = "";
+            return View();
+        }
+        public ActionResult IvalidAccount()
+        {
+            return View();
+        }
     }
 }

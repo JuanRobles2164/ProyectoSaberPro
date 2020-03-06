@@ -58,11 +58,11 @@ namespace ProyectoSaberPro
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "593667388021-ndjsetruuqqhqk1h9vvae62fhhrrqd8s.apps.googleusercontent.com",
+                ClientSecret = "Pp5XWzNKImcLerfib4jgBout"
+            });
         }
     }
 }
