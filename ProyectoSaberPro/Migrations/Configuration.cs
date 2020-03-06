@@ -5,14 +5,14 @@ namespace ProyectoSaberPro.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ProyectoSaberPro.Models.ClaseContexto>
+    internal sealed class Configuration : DbMigrationsConfiguration<ProyectoSaberPro.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ProyectoSaberPro.Models.ClaseContexto context)
+        protected override void Seed(ProyectoSaberPro.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

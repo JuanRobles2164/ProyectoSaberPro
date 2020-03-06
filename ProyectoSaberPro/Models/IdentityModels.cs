@@ -29,5 +29,8 @@ namespace ProyectoSaberPro.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Alumno> Alumnos { get; set; }
+        public DbSet<Docente> Docentes { get; set; }
+        public DbSet<Administrador> Administradores { get; set; }
     }
 }
