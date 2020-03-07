@@ -32,7 +32,7 @@ namespace ProyectoSaberPro.Controllers
             ViewBag.Message = "";
             return View();
         }
-        public ActionResult IvalidAccount()
+        public ActionResult InvalidAccount()
         {
             return View();
         }

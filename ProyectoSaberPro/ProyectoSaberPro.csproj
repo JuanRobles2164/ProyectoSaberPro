@@ -168,6 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -242,6 +245,21 @@
     <Content Include="Views\Home\RegistroPrimigenio.cshtml" />
     <Content Include="Views\Home\InvalidAccount.cshtml" />
     <Content Include="Views\Home\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Administrador\Create.cshtml" />
+    <Content Include="Views\Administrador\Delete.cshtml" />
+    <Content Include="Views\Administrador\Details.cshtml" />
+    <Content Include="Views\Administrador\Edit.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Alumno\Create.cshtml" />
+    <Content Include="Views\Alumno\Delete.cshtml" />
+    <Content Include="Views\Alumno\Details.cshtml" />
+    <Content Include="Views\Alumno\Edit.cshtml" />
+    <Content Include="Views\Alumno\Index.cshtml" />
+    <Content Include="Views\Docente\Create.cshtml" />
+    <Content Include="Views\Docente\Delete.cshtml" />
+    <Content Include="Views\Docente\Details.cshtml" />
+    <Content Include="Views\Docente\Edit.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
