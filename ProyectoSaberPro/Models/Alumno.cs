@@ -7,7 +7,7 @@ namespace ProyectoSaberPro.Models
 {
     public class Alumno
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Correo { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

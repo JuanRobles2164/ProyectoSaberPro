@@ -14,12 +14,23 @@ namespace ProyectoSaberPro.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Administrador
+        #region GET: Usuarios
         public ActionResult Index()
         {
             return View(db.Administradores.ToList());
         }
+        public ActionResult IndexAlumnos()
+        {
+            return View(db.Alumnos.ToList());
+        }
+        public ActionResult indexDocentes()
+        {
+            return View(db.Alumnos.ToList());
+        }
 
+        #endregion
+
+        #region Ver Detalles usuario
         // GET: Administrador/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,8 +45,35 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
+        public ActionResult DetailsEstudiante(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alumno alumno = db.Alumnos.Find(id);
+            if (alumno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumno);
+        }
+        public ActionResult DetailsDocente(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Docente docente = db.Docentes.Find(id);
+            if (docente == null)
+            {
+                return HttpNotFound();
+            }
+            return View(docente);
+        }
+        #endregion
 
-        // GET: Administrador/Create
+        #region GET: Administrador/Create
         public ActionResult Create()
         {
             return View();
@@ -57,6 +95,7 @@ namespace ProyectoSaberPro.Controllers
 
             return View(administrador);
         }
+        #endregion
 
         // GET: Administrador/Edit/5
         public ActionResult Edit(int? id)
@@ -88,7 +127,16 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
-
+        public ActionResult EditDocente([Bind(Include = "ID,Correo")] Docente docente)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(docente).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(docente);
+        }
         // GET: Administrador/Delete/5
         public ActionResult Delete(int? id)
         {

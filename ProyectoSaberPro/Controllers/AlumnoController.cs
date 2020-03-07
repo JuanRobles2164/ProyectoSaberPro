@@ -17,7 +17,7 @@ namespace ProyectoSaberPro.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
-            return View(db.Alumnos.ToList());
+            return View();
         }
 
         // GET: Alumno/Details/5

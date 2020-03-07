@@ -18,8 +18,10 @@ namespace ProyectoSaberPro.Controllers
                 //Aquí debería retornar a la vista de registro del primer primerísimo admin
                 //Es básicamente la misma de todas xd pero se registra como admin
                 //Sino entiende, es lo del requisito 3 del correo de Laura
+                ViewBag.Message = "Sin usuarios";
                 return View();
             } else {
+                ViewBag.Message = "Hay usuarios!";
                 return View();
             }
             
