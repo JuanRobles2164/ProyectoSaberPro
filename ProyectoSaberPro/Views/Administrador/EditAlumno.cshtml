@@ -2,15 +2,16 @@
 
 @{
     ViewBag.Title = "Editar Alumno";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>Editar Alumno</h2>
 
-
-@using (Html.BeginForm())
+<!--"funcion"/"controller"/new { ReturnUrl = ViewBag.ReturnUrl }/metodo/new { .arroba.class = "form-horizontal", role = "form" }-->>
+@using (Html.BeginForm("EditAlumno", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Alumno</h4>
         <hr />

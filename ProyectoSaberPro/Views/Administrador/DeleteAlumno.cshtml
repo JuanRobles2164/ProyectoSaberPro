@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Eliminar alumno";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>Eliminar Alumno</h2>
@@ -45,7 +46,7 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("DeleteAlumnoConfirmed", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

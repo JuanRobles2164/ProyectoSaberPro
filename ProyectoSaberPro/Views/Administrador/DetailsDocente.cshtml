@@ -1,0 +1,35 @@
+﻿@model ProyectoSaberPro.Models.Docente
+
+@{
+    ViewBag.Title = "Detaller Docente";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<h2>Detalles Docente</h2>
+
+<div>
+    <h4>Docente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditDocente", new { id = Model.ID }) |
+    @Html.ActionLink("Volver a la lista", "IndexDocentes")
+</p>

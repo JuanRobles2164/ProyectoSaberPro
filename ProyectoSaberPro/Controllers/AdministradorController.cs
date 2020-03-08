@@ -25,13 +25,12 @@ namespace ProyectoSaberPro.Controllers
         }
         public ActionResult indexDocentes()
         {
-            return View(db.Alumnos.ToList());
+            return View(db.Docentes.ToList());
         }
 
         #endregion
 
-        #region Ver Detalles usuario
-        // GET: Administrador/Details/5
+        #region  GET: Administrador/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,7 +44,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
-        public ActionResult DetailsEstudiante(int? id)
+        public ActionResult DetailsAlumno(int? id)
         {
             if (id == null)
             {
@@ -97,7 +96,9 @@ namespace ProyectoSaberPro.Controllers
         }
         #endregion
 
-        // GET: Administrador/Edit/5
+        #region Edit
+
+        #region GET: Administrador/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -124,8 +125,23 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(alumno);
         }
+        public ActionResult EditDocente(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Docente docente = db.Docentes.Find(id);
+            if (docente == null)
+            {
+                return HttpNotFound();
+            }
+            return View(docente);
+        }
 
-        // POST: Administrador/Edit/5
+        #endregion
+
+        #region POST: Administrador/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -146,7 +162,7 @@ namespace ProyectoSaberPro.Controllers
             {
                 db.Entry(docente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexDocentes");
             }
             return View(docente);
         }
@@ -156,12 +172,17 @@ namespace ProyectoSaberPro.Controllers
             {
                 db.Entry(alumno).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexAlumnos");
             }
             return View(alumno);
         }
+        #endregion
 
-        // GET: Administrador/Delete/5
+        #endregion
+
+        #region GET: Administrador/Delete/5
+
+        #region deleteAdmin
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -187,6 +208,9 @@ namespace ProyectoSaberPro.Controllers
             return RedirectToAction("Index");
         }
 
+        #endregion
+
+        #region deleteAlumno
         public ActionResult DeleteAlumno(int? id)
         {
             if (id == null)
@@ -211,19 +235,21 @@ namespace ProyectoSaberPro.Controllers
             db.SaveChanges();
             return RedirectToAction("IndexAlumnos");
         }
+        #endregion
 
+        #region deleteDocente
         public ActionResult DeleteDocente(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumno alumno = db.Alumnos.Find(id);
-            if (alumno == null)
+            Docente docente = db.Docentes.Find(id);
+            if (docente == null)
             {
                 return HttpNotFound();
             }
-            return View(alumno);
+            return View(docente);
         }
 
         // POST: Administrador/Delete/5
@@ -236,6 +262,9 @@ namespace ProyectoSaberPro.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
