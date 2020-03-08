@@ -111,6 +111,19 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
+        public ActionResult EditAlumno(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alumno alumno = db.Alumnos.Find(id);
+            if (alumno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumno);
+        }
 
         // POST: Administrador/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
@@ -137,6 +150,17 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(docente);
         }
+        public ActionResult EditAlumno([Bind(Include = "ID,Correo")] Alumno alumno)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(alumno).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(alumno);
+        }
+
         // GET: Administrador/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -159,6 +183,56 @@ namespace ProyectoSaberPro.Controllers
         {
             Administrador administrador = db.Administradores.Find(id);
             db.Administradores.Remove(administrador);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteAlumno(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alumno alumno = db.Alumnos.Find(id);
+            if (alumno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumno);
+        }
+
+        // POST: Administrador/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteAlumnoConfirmed(int id)
+        {
+            Alumno alumno = db.Alumnos.Find(id);
+            db.Alumnos.Remove(alumno);
+            db.SaveChanges();
+            return RedirectToAction("IndexAlumnos");
+        }
+
+        public ActionResult DeleteDocente(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alumno alumno = db.Alumnos.Find(id);
+            if (alumno == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alumno);
+        }
+
+        // POST: Administrador/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDocenteConfirmed(int id)
+        {
+            Docente docente = db.Docentes.Find(id);
+            db.Docentes.Remove(docente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

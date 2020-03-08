@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\Alumnoes1Controller.cs" />
     <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -262,6 +263,17 @@
     <Content Include="Views\Docente\Details.cshtml" />
     <Content Include="Views\Docente\Edit.cshtml" />
     <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Administrador\IndexAlumnos.cshtml" />
+    <Content Include="Views\Administrador\EditAlumno.cshtml" />
+    <Content Include="Views\Administrador\DeleteAlumno.cshtml" />
+    <Content Include="Views\Administrador\DetailsAlumno.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdministrador.cshtml" />
+    <Content Include="Views\Administrador\IndexDocentes.cshtml" />
+    <Content Include="Views\Alumnoes1\Create.cshtml" />
+    <Content Include="Views\Alumnoes1\Delete.cshtml" />
+    <Content Include="Views\Alumnoes1\Details.cshtml" />
+    <Content Include="Views\Alumnoes1\Edit.cshtml" />
+    <Content Include="Views\Alumnoes1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

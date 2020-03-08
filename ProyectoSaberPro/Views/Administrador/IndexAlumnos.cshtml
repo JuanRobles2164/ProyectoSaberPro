@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProyectoSaberPro.Models.Alumno>
+
+@{
+    ViewBag.Title = "Lista de Alumnos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<h2>Lista de Alumnos</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semestre)
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semestre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditAlumno", new { id=item.ID }) |
+            @Html.ActionLink("Detalles", "DetailsEstudiante", new { id=item.ID }) |
+            @Html.ActionLink("Borrar", "DeleteAlumno", new { id=item.ID }) |
+            
+        </td>
+    </tr>
+}
+
+</table>
