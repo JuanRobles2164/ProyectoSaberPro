@@ -3,5 +3,36 @@
     ViewBag.Title = "InvalidAccount";
 }
 
-<h2>InvalidAccount</h2>
+<div class="error">
+    <b>Cuenta Invalida. ?</b>
+    <div class="ojo">
+        <b>Solo se puede ingresar con el Email institucional.</b>
+    </div>
+</div>
 
+<style>
+    .ojo, .error {
+        border: 1px solid;
+        margin: 10px 0px;
+        padding: 15px 50px 15px 50px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: left;
+        width: auto;
+    }
+
+    .ojo {
+        color: #9F6000;
+        font-size: 16px;
+        background-color: #FEEFB3;
+        background-image: url('../../Pictures/Advertencia.png');
+    }
+
+    .error {
+        color: #D8000C;
+        font-size: 20px;
+        background-color: #FFBABA;
+        background-image: url('../../Pictures/Error.png');
+    }
+</style>
