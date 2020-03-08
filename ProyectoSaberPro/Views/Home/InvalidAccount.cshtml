@@ -3,36 +3,75 @@
     ViewBag.Title = "InvalidAccount";
 }
 
-<div class="error">
-    <b>Cuenta Invalida. ?</b>
-    <div class="ojo">
-        <b>Solo se puede ingresar con el Email institucional.</b>
+    <div class="error">
+        <b>Cuenta Invalida. </b>
+        <div id="boton" onclick="divLogin()"></div>
+        <div class="ojo" id="caja" style="vertical-align:middle;">
+            <b>Solo se puede ingresar con el Email institucional.</b>
+        </div>
     </div>
-</div>
 
-<style>
-    .ojo, .error {
-        border: 1px solid;
-        margin: 10px 0px;
-        padding: 15px 50px 15px 50px;
-        background-repeat: no-repeat;
-        background-position: 10px center;
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: left;
-        width: auto;
-    }
+    <style>
+        .ojo, .error {
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+        }
 
-    .ojo {
-        color: #9F6000;
-        font-size: 16px;
-        background-color: #FEEFB3;
-        background-image: url('../../Pictures/Advertencia.png');
-    }
+        .ojo {
+            color: #9F6000;
+            font-size: 0px;
+            background-color: #FEEFB3;
+            background-image: url('../../Pictures/Advertencia.png');
+        }
 
-    .error {
-        color: #D8000C;
-        font-size: 20px;
-        background-color: #FFBABA;
-        background-image: url('../../Pictures/Error.png');
-    }
-</style>
+        .error {
+            color: #D8000C;
+            width: auto;
+            border: 1px solid;
+            margin: 10px 0px;
+            font-size: 20px;
+            padding: 10px 50px 10px 50px;
+            background-color: #FFBABA;
+            background-image: url('../../Pictures/Error.png');
+        }
+
+        #boton {
+            background-color: #FFBABA;
+            background-image: url('../../Pictures/pregunta.png');
+            width: 32px;
+            cursor: pointer;
+            text-align: center;
+            height: 32px;
+            box-shadow: 0px 0px 2px #000;
+            display: inline-block;
+            vertical-align:middle;
+        }
+
+
+        #boton:hover {
+            opacity: .8;
+        }
+
+        #caja {
+            width: 100%;
+            margin: auto;
+            height: 0px;
+            box-shadow: 22px 14px -4px rgba(250,216,113,1);
+            transition: height .4s;
+        }
+
+        #boton:hover {
+            opacity: .8;
+        }
+
+        #boton:hover + #caja {
+            height: 50px;
+            width: auto;
+            font-size: 16px;
+            border: 1px solid;
+            margin: 10px 0px;
+            padding: 15px 50px 15px 50px;
+        }
+    </style>
