@@ -13,6 +13,7 @@ namespace ProyectoSaberPro.Controllers
     public class AdministradorController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        //Prueba de git al proyecto
 
         #region GET: Usuarios
         public ActionResult Index()
