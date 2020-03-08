@@ -17,45 +17,7 @@ namespace ProyectoSaberPro.Controllers
         // GET: Docente
         public ActionResult Index()
         {
-            return View(db.Docentes.ToList());
-        }
-
-        // GET: Docente/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Docente docente = db.Docentes.Find(id);
-            if (docente == null)
-            {
-                return HttpNotFound();
-            }
-            return View(docente);
-        }
-
-        // GET: Docente/Create
-        public ActionResult Create()
-        {
             return View();
-        }
-
-        // POST: Docente/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Correo")] Docente docente)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Docentes.Add(docente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(docente);
         }
 
         // GET: Docente/Edit/5
@@ -65,7 +27,8 @@ namespace ProyectoSaberPro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Docente docente = db.Docentes.Find(id);
+            var user = db.Users.Find(id);
+            Docente docente = db.Docentes.First(doc => doc.Correo == user.Email);
             if (docente == null)
             {
                 return HttpNotFound();

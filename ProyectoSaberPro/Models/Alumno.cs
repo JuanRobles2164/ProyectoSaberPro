@@ -12,6 +12,7 @@ namespace ProyectoSaberPro.Models
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Semestre { get; set; }
+        public string Username { get; set; }
 
     }
 }

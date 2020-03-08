@@ -253,14 +253,8 @@
     <Content Include="Views\Administrador\Details.cshtml" />
     <Content Include="Views\Administrador\Edit.cshtml" />
     <Content Include="Views\Administrador\Index.cshtml" />
-    <Content Include="Views\Alumno\Create.cshtml" />
-    <Content Include="Views\Alumno\Delete.cshtml" />
-    <Content Include="Views\Alumno\Details.cshtml" />
     <Content Include="Views\Alumno\Edit.cshtml" />
     <Content Include="Views\Alumno\Index.cshtml" />
-    <Content Include="Views\Docente\Create.cshtml" />
-    <Content Include="Views\Docente\Delete.cshtml" />
-    <Content Include="Views\Docente\Details.cshtml" />
     <Content Include="Views\Docente\Edit.cshtml" />
     <Content Include="Views\Docente\Index.cshtml" />
     <Content Include="Views\Administrador\IndexAlumnos.cshtml" />
