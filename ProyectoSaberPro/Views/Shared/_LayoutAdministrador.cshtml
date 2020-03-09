@@ -25,8 +25,7 @@
                     </span>
                 
             </li>
-            <li class="has-subnav">
-                
+            <li class="has-subna">               
                     <i class="fa fa-book fa-2x"></i>
                     <span class="nav-text">
                         @Html.ActionLink("Docentes", "IndexDocentes")
@@ -35,13 +34,12 @@
 
             </li>
             <li class="has-subnav">
-                
+                <a href="@Url.Action("Alumnos", "IndexAlumnos")">
                     <i class="fa fa-briefcase fa-2x"></i>
                     <span class="nav-text">
-                        @Html.ActionLink("Alumnos", "IndexAlumnos")
+                        Alumnos
                     </span>
-                
-
+                </a>
             </li>
             <!--
             <li>
