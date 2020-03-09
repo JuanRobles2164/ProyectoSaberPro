@@ -197,6 +197,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Pictures\Advertencia.png" />
     <Content Include="Pictures\Error.png" />
+    <Content Include="Pictures\logo-udi-web.png" />
     <Content Include="Pictures\pregunta.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
