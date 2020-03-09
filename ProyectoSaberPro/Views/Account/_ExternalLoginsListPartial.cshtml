@@ -2,11 +2,11 @@
 
 @using Microsoft.Owin.Security
 
-<h4>Registrese o inicie sesion con Google.</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
-    if (loginProviders.Count() == 0) {
+    if (loginProviders.Count() == 0)
+    {
         <div>
             <p>
                 No existen servicios de autenticación externos configurados. Consulte <a href="https://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
@@ -14,15 +14,16 @@
             </p>
         </div>
     }
-    else {
-        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+    else
+    {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+        {
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
-                <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Inicie sesión con su cuenta @p.Caption">@p.AuthenticationType</button>
-                    }
-                </p>
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Inicie sesión con su cuenta @p.Caption">@p.AuthenticationType</button>
+                }
             </div>
         }
     }
