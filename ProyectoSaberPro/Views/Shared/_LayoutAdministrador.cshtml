@@ -16,74 +16,83 @@
 
     <div class="area">
         <nav class="main-menu">
-        <ul>
-            <li>
-                
-                    <i class="fas fa-home"></i>
-                    <span class="nav-text">
-                        @Html.ActionLink("Inicio", "Index")
-                    </span>
-                
-            </li>
-            <li class="has-subna">               
-                    <i class="fa fa-book fa-2x"></i>
-                    <span class="nav-text">
-                        @Html.ActionLink("Docentes", "IndexDocentes")
-                    </span>
-                
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Home
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="@Url.Action("Index")">
+                        <i class="fa fa-star fa-2x"></i>
+                        <span class="nav-text">
+                            Administradores
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subna">
+                    <a href="@Url.Action("Docentes", "IndexDocentes")">
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                            Docentes
+                        </span>
+                    </a>
 
-            </li>
-            <li class="has-subnav">
-                <a href="@Url.Action("Alumnos", "IndexAlumnos")">
-                    <i class="fa fa-briefcase fa-2x"></i>
-                    <span class="nav-text">
-                        Alumnos
-                    </span>
-                </a>
-            </li>
-            <!--
-            <li>
-                <a href="#">
-                    <i class="fa fa-bar-chart-o fa-2x"></i>
-                    <span class="nav-text">
+                </li>
+                <li class="has-subnav">
+                    <a href="@Url.Action("Alumnos", "IndexAlumnos")">
+                        <i class="fa fa-briefcase fa-2x"></i>
+                        <span class="nav-text">
+                            Alumnos
+                        </span>
+                    </a>
+                </li>
+                <!--
+    <li>
+        <a href="#">
+            <i class="fa fa-bar-chart-o fa-2x"></i>
+            <span class="nav-text">
 
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-font fa-2x"></i>
-                    <span class="nav-text">
-                        Quotes
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-table fa-2x"></i>
-                    <span class="nav-text">
-                        Tables
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-map-marker fa-2x"></i>
-                    <span class="nav-text">
-                        Maps
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-info fa-2x"></i>
-                    <span class="nav-text">
-                        Documentation
-                    </span>
-                </a>
-            </li>
-                -->
-        </ul>
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-font fa-2x"></i>
+            <span class="nav-text">
+                Quotes
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-table fa-2x"></i>
+            <span class="nav-text">
+                Tables
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-map-marker fa-2x"></i>
+            <span class="nav-text">
+                Maps
+            </span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="fa fa-info fa-2x"></i>
+            <span class="nav-text">
+                Documentation
+            </span>
+        </a>
+    </li>
+        -->
+            </ul>
         <ul class="logout">
             <li>
                 <a href="#">
@@ -135,6 +144,9 @@
             transition: width .05s linear;
             -webkit-transform: translateZ(0) scale(1,1);
             z-index: 1000;
+        }
+        .UDI{
+            background-image:url('../../Pictures/logo-udi-web.png');
         }
 
             .main-menu > ul {
