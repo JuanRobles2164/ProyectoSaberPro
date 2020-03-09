@@ -15,10 +15,8 @@ namespace ProyectoSaberPro.Controllers
             var userList = db.Users.ToList();
             if (userList.Count == 0)
             {
-                ViewBag.Message = "Sin usuarios";
-                return View();
+                return View("~/Views/Account/Register.cshtml");
             } else {
-                ViewBag.Message = "Hay usuarios!";
                 return View();
             }
             
