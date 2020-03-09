@@ -14,41 +14,33 @@
 
     <!--Aquí queda para que le meta cuanto CSS quiera al proyecto-->
 
-    <div class="area"></div><nav class="main-menu">
+    <div class="area">
+        <nav class="main-menu">
         <ul>
             <li>
-                <a href="http://justinfarrow.com">
+                
                     <i class="fas fa-home"></i>
                     <span class="nav-text">
-                        Home
+                        @Html.ActionLink("Inicio", "Index")
                     </span>
-                </a>
+                
             </li>
             <li class="has-subnav">
-                <a href="#">
-                    <i class="fa fa-star fa-2x"></i>
-                    <span class="nav-text">
-                        Administradores
-                    </span>
-                </a>
-
-            </li>
-            <li class="has-subnav">
-                <a href="#">
+                
                     <i class="fa fa-book fa-2x"></i>
                     <span class="nav-text">
-                        Alumnos
+                        @Html.ActionLink("Docentes", "IndexDocentes")
                     </span>
-                </a>
+                
 
             </li>
             <li class="has-subnav">
-                <a href="#">
+                
                     <i class="fa fa-briefcase fa-2x"></i>
                     <span class="nav-text">
-                        Docentes
+                        @Html.ActionLink("Alumnos", "IndexAlumnos")
                     </span>
-                </a>
+                
 
             </li>
             <!--
@@ -105,9 +97,10 @@
             </li>
         </ul>
     </nav>
+    </div>
     <style>
         @@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-        }
+        
         @@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
         .fa-2x {
@@ -211,7 +204,6 @@
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
-            -o-user-select: none;
             user-select: none;
         }
 
@@ -241,8 +233,11 @@
         }
     </style>
     <br>
-    @RenderBody()
-
+    <div class="container-fluid">
+        <div class="animated">
+            @RenderBody()
+        </div>
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

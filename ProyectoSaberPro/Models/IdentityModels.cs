@@ -32,7 +32,5 @@ namespace ProyectoSaberPro.Models
         public DbSet<Alumno> Alumnos { get; set; }
         public DbSet<Docente> Docentes { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
-
-        public System.Data.Entity.DbSet<ProyectoSaberPro.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

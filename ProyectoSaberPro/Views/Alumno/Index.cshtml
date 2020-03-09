@@ -2,13 +2,13 @@
 @using Microsoft.AspNet.Identity
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Alumno";
 }
 
 <h2>Inicio</h2>
 
 <p>
-    @Html.ActionLink("Editar Información", "Edit", new { username = User.Identity.GetUserName() })
+    @Html.ActionLink("Editar Información", "Edit", new { id = User.Identity.GetUserName() });
 </p>
 
 Página de inicio del estudiante

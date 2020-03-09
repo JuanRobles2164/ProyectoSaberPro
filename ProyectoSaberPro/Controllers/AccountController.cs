@@ -391,7 +391,19 @@ namespace ProyectoSaberPro.Controllers
                 }
                 AddErrors(result);
             }
-
+            ApplicationDbContext db = new ApplicationDbContext();
+            if (model.Rol == "1")
+            {
+                Alumno al = new Alumno{ Correo = model.Email};
+                db.Alumnos.Add(al);
+                db.SaveChanges();
+            }
+            if (model.Rol == "2")
+            {
+                Docente doc = new Docente { Correo = model.Email };
+                db.Docentes.Add(doc);
+                db.SaveChanges();
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }

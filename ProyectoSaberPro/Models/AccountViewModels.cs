@@ -8,6 +8,7 @@ namespace ProyectoSaberPro.Models
         [Required]
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
+        public string Rol { get; set; }
     }
 
     public class ExternalLoginListViewModel

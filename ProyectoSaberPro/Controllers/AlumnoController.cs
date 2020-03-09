@@ -38,15 +38,13 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // GET: Alumno/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string correo)
         {
-            if (id == null)
+            if (correo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = db.Users.Find(id);
-            Alumno alumno = db.Alumnos.First(x => x.Correo == user.Email);
-            //Alumno alumno = db.Alumnos.Find(username);
+            Alumno alumno = db.Alumnos.First(x => x.Correo == correo);
             if (alumno == null)
             {
                 return HttpNotFound();
