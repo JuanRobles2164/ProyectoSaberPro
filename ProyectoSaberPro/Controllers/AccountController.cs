@@ -359,21 +359,9 @@ namespace ProyectoSaberPro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             if (User.Identity.IsAuthenticated)
             {
-                Alumno al = db.Alumnos.First(x => x.Correo == model.Email);
-                Docente doc = db.Docentes.First(x => x.Correo == model.Email);
-                if (al != null)
-                {
-                    return RedirectToAction("Index", "Alumno");
-                } else if (doc != null)
-                {
-                    return RedirectToAction("Index", "Docente");
-                }
-                else {
-                    return RedirectToAction("Index", "Manage");
-                }
+                return RedirectToAction("Index", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -390,7 +378,7 @@ namespace ProyectoSaberPro.Controllers
                     return RedirectToAction("InvalidAccount", "Home");
                 }
                 var result = await UserManager.CreateAsync(user);
-                
+                ApplicationDbContext db = new ApplicationDbContext();
                 if (model.Rol == "1")
                 {
                     Alumno al = new Alumno { Correo = model.Email };

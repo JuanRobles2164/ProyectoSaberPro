@@ -1,9 +1,48 @@
 ﻿@using ProyectoSaberPro.Models
-@model LoginViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Login";
 }
 @ViewBag.Message
+@model LoginViewModel
+
+    <center>
+        <div class="card">
+            <div class="row">
+                <div class="col-md-12">
+                    <section>
+                        <from asp-controller="Home" asp-action="Index" method="post">
+                            <h4>Iniciar Sesi&oacute;n</h4>
+                            <hr />
+                            <div class="form-group">
+                                <icon type="submit" class="btn btn-default">Docentes</icon>
+                            </div>
+                            <div class="form-group">
+                                <icon type="submit" class="btn btn-danger">Estudiantes</icon>
+                            </div>
+                            <div class="from-group">
+                                <icon type="submit" class="btn btn-success">Administradores</icon>
+                            </div>
+                            <div asp-validation="All" class="text-danger"></div>
+                            <div class="form-group text-center">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group text-center">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
+                            </div>
+                        </from>
+                    </section>
+                    <label id="IndexMessage" class="has-error"></label>
+                </div>
+            </div>
+        </div>
+    </center>
 <div>
     <div class="col-md-4">
         <section id="socialLoginForm">
