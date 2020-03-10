@@ -28,8 +28,9 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Volver a la lista", "Index")
+                &nbsp; &nbsp; &nbsp;
+                <input type="submit" value="Delete" class="boton alternativo" />  &nbsp; &nbsp; &nbsp;
+                @Html.ActionLink("Volver a la lista", "Index", "Administrador", new { @class = "btn btn-primary" })
             </div>
         }
     </div>
@@ -40,13 +41,17 @@
         text-align: justify;
     }
 
+    .dl-horizontal{
+        margin: 15px 0px 30px 0px;
+    }
+
     .boton.alternativo {
         background-color: transparent;
         color: #810808;
         border: 2px solid #810808;
-        border-radius: 7px;
-        width: 72px;
-        height: 28px
+        border-radius: 6px;
+        width: 90px;
+        height: 34px
     }
 
         .boton.alternativo:hover {

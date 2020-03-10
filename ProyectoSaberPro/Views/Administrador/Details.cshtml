@@ -4,24 +4,71 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
+    <div class="margen">
+        <h2>Details</h2>
 
-<h2>Details</h2>
+        <div>
+            <h4>Administrador</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </dt>
 
-<div>
-    <h4>Administrador</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Correo)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
+            </dl>
+        </div>
+        <p>
+            &nbsp;
+            <a href="@Url.Action("Edit", new { id = Model.ID })">
+                <span class="alternativo">Edit</span>
+            </a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="@Url.Action("Index", new { id = Model.ID, @class = "btn btn-primary"})">
+                <span class="boton">Back to List</span>
+            </a>
+        </p>
+    </div>
+<style>
+    .boton,.alternativo {
+        background-color: transparent;
+        vertical-align:middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        border-radius: 5px;
+        text-align:center;
+        width:80px;
+        height:34px;
+        display:table-cell;
+    }
+    .boton{
+        color: #FFFFFF;
+        background-color: #357BB6;
+                border: 1px solid #204D74;
+    }
+    .alternativo{
+        color: #000000;
+                border: 2px solid #000000;
+    }
+
+        .alternativo:hover {
+            background-color: #000000;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .boton:hover {
+            background-color: #286090;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+    .margen {
+        margin: 15px 100px 5px 100px;
+        text-align: justify;
+    }
+</style>
