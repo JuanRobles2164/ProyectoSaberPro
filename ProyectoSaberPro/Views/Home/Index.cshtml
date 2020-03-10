@@ -14,27 +14,13 @@
                             <h4>Iniciar Sesi&oacute;n</h4>
                             <hr />
                             <div class="form-group">
-                                <icon type="submit" class="btn btn-default">Docentes</icon>
+                                <icon type="submit" class="btn btn-dark">@Html.ActionLink("Administradores", "")</icon>
                             </div>
                             <div class="form-group">
-                                <icon type="submit" class="btn btn-danger">Estudiantes</icon>
+                                <icon type="submit" class="btn btn-warning">@Html.ActionLink("Docente", "Login")</icon>
                             </div>
                             <div class="from-group">
-                                <icon type="submit" class="btn btn-success">Administradores</icon>
-                            </div>
-                            <div asp-validation="All" class="text-danger"></div>
-                            <div class="form-group text-center">
-                                <label asp-for="Input.Email"></label>
-                                <input asp-for="Input.Email" class="form-control" />
-                                <span asp-validation-for="Input.Email" class="text-danger"></span>
-                            </div>
-                            <div class="form-group text-center">
-                                <label asp-for="Input.Password"></label>
-                                <input asp-for="Input.Password" class="form-control" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
+                                <icon type="submit" class="btn btn-success">@Html.ActionLink("Estudiante","Login")</icon>
                             </div>
                         </from>
                     </section>

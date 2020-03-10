@@ -15,7 +15,7 @@ namespace ProyectoSaberPro.Controllers
             var userList = db.Users.ToList();
             if (userList.Count == 0)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Register", "Account");
             } else {
                 return View();
             }
@@ -29,6 +29,10 @@ namespace ProyectoSaberPro.Controllers
         public ActionResult InvalidAccount()
         {
             return View();
+        }
+        public ActionResult Login()
+        {
+            return RedirectToAction("Login", "Account");
         }
         
     }

@@ -379,13 +379,13 @@ namespace ProyectoSaberPro.Controllers
                 }
                 var result = await UserManager.CreateAsync(user);
                 ApplicationDbContext db = new ApplicationDbContext();
-                if (model.Rol == "1")
+                if (model.Rol == "Alumno")
                 {
                     Alumno al = new Alumno { Correo = model.Email };
                     db.Alumnos.Add(al);
                     db.SaveChanges();
                 }
-                if (model.Rol == "2")
+                if (model.Rol == "Docente")
                 {
                     Docente doc = new Docente { Correo = model.Email };
                     db.Docentes.Add(doc);
