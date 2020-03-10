@@ -15,7 +15,7 @@ namespace ProyectoSaberPro.Controllers
             var userList = db.Users.ToList();
             if (userList.Count == 0)
             {
-                return View("~/Views/Account/Register.cshtml");
+                return RedirectToAction("Login", "Account");
             } else {
                 return View();
             }

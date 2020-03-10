@@ -359,7 +359,6 @@ namespace ProyectoSaberPro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Manage");
@@ -379,7 +378,19 @@ namespace ProyectoSaberPro.Controllers
                     return RedirectToAction("InvalidAccount", "Home");
                 }
                 var result = await UserManager.CreateAsync(user);
-
+                ApplicationDbContext db = new ApplicationDbContext();
+                if (model.Rol == "1")
+                {
+                    Alumno al = new Alumno { Correo = model.Email };
+                    db.Alumnos.Add(al);
+                    db.SaveChanges();
+                }
+                if (model.Rol == "2")
+                {
+                    Docente doc = new Docente { Correo = model.Email };
+                    db.Docentes.Add(doc);
+                    db.SaveChanges();
+                }
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
@@ -390,19 +401,6 @@ namespace ProyectoSaberPro.Controllers
                     }
                 }
                 AddErrors(result);
-            }
-            ApplicationDbContext db = new ApplicationDbContext();
-            if (model.Rol == "1")
-            {
-                Alumno al = new Alumno{ Correo = model.Email};
-                db.Alumnos.Add(al);
-                db.SaveChanges();
-            }
-            if (model.Rol == "2")
-            {
-                Docente doc = new Docente { Correo = model.Email };
-                db.Docentes.Add(doc);
-                db.SaveChanges();
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
