@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProyectoSaberPro.Models;
@@ -17,17 +19,28 @@ namespace ProyectoSaberPro.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationRoleManager _roleManager;
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
-
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
         public ApplicationSignInManager SignInManager
         {
             get
@@ -149,17 +162,19 @@ namespace ProyectoSaberPro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (!model.Email.Contains("@udi.edu.co"))
+            /*if (!model.Email.Contains("@udi.edu.co"))
             {
                 return RedirectToAction("InvalidAccount", "Home");
-            }
+            }*/
             if (ModelState.IsValid)
             {
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
                 if (result.Succeeded)
                 {
+                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), "Admininistrador");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
@@ -348,6 +363,12 @@ namespace ProyectoSaberPro.Controllers
                     // Si el usuario no tiene ninguna cuenta, solicitar que cree una
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                    List<SelectListItem> list = new List<SelectListItem>();
+                    foreach (var role in RoleManager.Roles)
+                    {
+                        list.Add(new SelectListItem() { Value = role.Name, Text = role.Name});
+                    }
+                    ViewBag.Roles = list;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
             }
         }
@@ -379,18 +400,21 @@ namespace ProyectoSaberPro.Controllers
                 }
                 var result = await UserManager.CreateAsync(user);
                 ApplicationDbContext db = new ApplicationDbContext();
-                if (model.Rol == "Alumno")
+                if (model.Role == "Alumno")
                 {
+                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                     Alumno al = new Alumno { Correo = model.Email };
                     db.Alumnos.Add(al);
                     db.SaveChanges();
                 }
-                if (model.Rol == "Docente")
+                if (model.Role == "Docente")
                 {
+                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                     Docente doc = new Docente { Correo = model.Email };
                     db.Docentes.Add(doc);
                     db.SaveChanges();
                 }
+                db.Dispose();
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
