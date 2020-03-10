@@ -12,15 +12,17 @@
                     <section>
                         <from asp-controller="Home" asp-action="Index" method="post">
                             <h4>Iniciar Sesi&oacute;n</h4>
-                            <hr />
+                            <br />
                             <div class="form-group">
-                                <icon type="submit" class="btn btn-dark">@Html.ActionLink("Administradores", "")</icon>
+                                <icon type="submit" class="btn btn-lg btn-outline-warning">@Html.ActionLink("Docente", "Login")</icon>
                             </div>
-                            <div class="form-group">
-                                <icon type="submit" class="btn btn-warning">@Html.ActionLink("Docente", "Login")</icon>
-                            </div>
+                            
                             <div class="from-group">
-                                <icon type="submit" class="btn btn-success">@Html.ActionLink("Estudiante","Login")</icon>
+                                <icon type="submit" class="btn btn-lg btn-outline-success">@Html.ActionLink("Estudiante", "Login")</icon>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <icon type="submit" class="btn btn-lg btn-outline-dark">@Html.ActionLink("Administrador", "")</icon>
                             </div>
                         </from>
                     </section>
@@ -29,10 +31,3 @@
             </div>
         </div>
     </center>
-<div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
