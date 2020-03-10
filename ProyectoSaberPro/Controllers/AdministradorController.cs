@@ -157,7 +157,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
-        public ActionResult EditDocente([Bind(Include = "ID,Correo")] Docente docente)
+        public ActionResult EditDocente([Bind(Include = "ID,Correo,Nombres")] Docente docente)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +167,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(docente);
         }
-        public ActionResult EditAlumno([Bind(Include = "ID,Correo")] Alumno alumno)
+        public ActionResult EditAlumno([Bind(Include = "ID,Correo,Nombres,Apellidos,Semestre")] Alumno alumno)
         {
             if (ModelState.IsValid)
             {
@@ -261,7 +261,7 @@ namespace ProyectoSaberPro.Controllers
             Docente docente = db.Docentes.Find(id);
             db.Docentes.Remove(docente);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexDocentes");
         }
         #endregion
 
