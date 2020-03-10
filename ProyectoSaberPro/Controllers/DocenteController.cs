@@ -21,14 +21,14 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // GET: Docente/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string email)
         {
-            if (id == null)
+            if (email == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var user = db.Users.Find(id);
-            Docente docente = db.Docentes.First(doc => doc.Correo == user.Email);
+            //var user = db.Users.Find(id);
+            Docente docente = db.Docentes.First(doc => doc.Correo == email);
             if (docente == null)
             {
                 return HttpNotFound();
@@ -41,7 +41,7 @@ namespace ProyectoSaberPro.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Correo")] Docente docente)
+        public ActionResult Edit([Bind(Include = "ID,Correo,Nombres,Apellidos,Username")] Docente docente)
         {
             if (ModelState.IsValid)
             {

@@ -162,10 +162,10 @@ namespace ProyectoSaberPro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            /*if (!model.Email.Contains("@udi.edu.co"))
+            if (!model.Email.Contains("@udi.edu.co"))
             {
                 return RedirectToAction("InvalidAccount", "Home");
-            }*/
+            }
             if (ModelState.IsValid)
             {
 
@@ -400,8 +400,11 @@ namespace ProyectoSaberPro.Controllers
                 }
                 var result = await UserManager.CreateAsync(user);
                 ApplicationDbContext db = new ApplicationDbContext();
+                var roleAssignment = db.Roles.ToList();
+                
                 if (model.Role == "Alumno")
                 {
+                    
                     result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                     Alumno al = new Alumno { Correo = model.Email };
                     db.Alumnos.Add(al);

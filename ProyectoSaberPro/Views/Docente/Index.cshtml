@@ -8,8 +8,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Editar Información", "Edit", new { id = User.Identity.GetUserId() })
+    @Html.ActionLink("Editar Información", "Edit", new { email = User.Identity.GetUserName() })
 </p>
 
 
-Página de inicio del Docente
+<h3>Bienvenido, docente</h3>
