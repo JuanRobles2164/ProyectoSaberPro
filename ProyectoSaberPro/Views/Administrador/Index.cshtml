@@ -1,34 +1,53 @@
 ﻿@model IEnumerable<ProyectoSaberPro.Models.Administrador>
-
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    </head>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
-<h2>Index</h2>
+    <div class="margen">
+        <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th></th>
-    </tr>
+        <p>
+            @Html.ActionLink("Crear nuevo", "Create", "Administrador", new { @class = "btn btn-success" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th></th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correo)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.ID , @class = "xdxd"})">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+<style>
+    .margen {
+         margin: 15px 100px 5px 100px;
+         text-align:justify;
     }
-
-</table>
+    .fa-pencil{
+        color:#EFD30B;
+    }
+    .fa-pencil:hover {
+        color: #D3B70B;
+    }
+</style>
