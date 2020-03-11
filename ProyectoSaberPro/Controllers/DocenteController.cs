@@ -27,7 +27,6 @@ namespace ProyectoSaberPro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //var user = db.Users.Find(id);
             Docente docente = db.Docentes.First(doc => doc.Correo == email);
             if (docente == null)
             {

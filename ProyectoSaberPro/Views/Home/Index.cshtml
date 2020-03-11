@@ -5,35 +5,52 @@
 @ViewBag.Message
 @model LoginViewModel
 
-    <center>
-        <div class="card">
-            <div class="row">
-                <div class="col-md-12">
-                    <section>
-                        <from asp-controller="Home" asp-action="Index" method="post">
-                            <h4>Iniciar Sesi&oacute;n</h4>
-                            <br />
-                            <div class="nav nav-tabs">
-                                <div class="form-group">
-                                    <a class="nav-link" href="#GoogleDocente">Docente</a>
-                                </div>
-                                <div class="from-group">
-                                    <a class="nav-link" href="#GoogleEstudiante">Estudiante</a>
-                                </div>
-                                <br />
-                                <div class="form-group">
-                                    <icon type="submit" class="btn btn-lg btn-outline-dark">@Html.ActionLink("Administrador", "Login")</icon>
-                                </div>
+<center>
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <section>
+                    <from asp-controller="Home" asp-action="Index" method="post">
+                        <h4>Iniciar Sesi&oacute;n</h4>
+                        <br />
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Docentes
+                            </button>
+                            <div class="dropdown-menu">
+                                <section id="socialLoginForm">
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                </section>
                             </div>
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="GoogleDocente" role="tabpanel" aria-labelledby="home-tab">Btn Google docente</div>
-                                <div class="tab-pane fade" id="GoogleEstudiante" role="tabpanel" aria-labelledby="profile-tab">Btn Google alumno</div>
+                        </div>
+                        <br /><br />
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Estudiantes
+                            </button>
+                            <div class="dropdown-menu">
+                                <section id="socialLoginForm">
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                </section>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administrador
+                            </button>
+                            <div class="dropdown-menu">
+                                <section id="socialLoginForm">
+                                    @Html.ActionLink("Registrarse", "Login")
+                                </section>
                             </div>
 
-                        </from>
-                    </section>
-                    <label id="IndexMessage" class="has-error"></label>
-                </div>
+                        </div>
+
+                    </from>
+                </section>
+                <label id="IndexMessage" class="has-error"></label>
             </div>
         </div>
-    </center>
+    </div>
+</center>
