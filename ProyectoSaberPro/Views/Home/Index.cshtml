@@ -13,17 +13,23 @@
                         <from asp-controller="Home" asp-action="Index" method="post">
                             <h4>Iniciar Sesi&oacute;n</h4>
                             <br />
-                            <div class="form-group">
-                                <icon type="submit" class="btn btn-lg btn-outline-warning">@Html.ActionLink("Docente", "Login")</icon>
+                            <div class="nav nav-tabs">
+                                <div class="form-group">
+                                    <a class="nav-link" href="#GoogleDocente">Docente</a>
+                                </div>
+                                <div class="from-group">
+                                    <a class="nav-link" href="#GoogleEstudiante">Estudiante</a>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <icon type="submit" class="btn btn-lg btn-outline-dark">@Html.ActionLink("Administrador", "Login")</icon>
+                                </div>
                             </div>
-                            
-                            <div class="from-group">
-                                <icon type="submit" class="btn btn-lg btn-outline-success">@Html.ActionLink("Estudiante", "Login")</icon>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="GoogleDocente" role="tabpanel" aria-labelledby="home-tab">Btn Google docente</div>
+                                <div class="tab-pane fade" id="GoogleEstudiante" role="tabpanel" aria-labelledby="profile-tab">Btn Google alumno</div>
                             </div>
-                            <br />
-                            <div class="form-group">
-                                <icon type="submit" class="btn btn-lg btn-outline-dark">@Html.ActionLink("Administrador", "")</icon>
-                            </div>
+
                         </from>
                     </section>
                     <label id="IndexMessage" class="has-error"></label>

@@ -174,7 +174,6 @@ namespace ProyectoSaberPro.Controllers
                 
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), "Admininistrador");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
