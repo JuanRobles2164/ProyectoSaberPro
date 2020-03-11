@@ -1,40 +1,93 @@
 ﻿@model IEnumerable<ProyectoSaberPro.Models.Docente>
-
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    </head>
 @{
     ViewBag.Title = "IndexDocentes";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
+<div class="margen">
+    <div class="container-fluid ">
 
-<div class="container-fluid ">
+        <h2>Listado de docentes</h2>
 
-<h2>Listado de docentes</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombres)
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;@Html.DisplayFor(modelItem => item.Nombres)
+                    </td>
+                    <td align="right">
+                        <a href="@Url.Action("EditDocente", new { id = item.ID })">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("DetailsDocente", new { id = item.ID })">
+                            <i class="fa fa-search-plus"></i>
+                        </a>
+                        <a href="@Url.Action("DeleteDocente", new { id = item.ID })">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombres)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditDocente", new { id=item.ID }) |
-            @Html.ActionLink("Detalles", "DetailsDocente", new { id=item.ID }) |
-            @Html.ActionLink("Borrar", "DeleteDocente", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
 </div>
+<style>
+    .table {
+        font-size: 16px;
+    }
+
+    .margen {
+        margin: 5px 200px 5px 200px;
+        text-align: justify;
+    }
+
+    .fa {
+        font-size: 5em;
+        position: relative;
+        display: table-cell;
+        width: 60px;
+        height: 36px;
+        font-size: 20px;
+    }
+
+    .fa-pencil {
+        color: #EFD30B;
+    }
+
+        .fa-pencil:hover {
+            color: #D3B70B;
+        }
+
+    .fa-trash {
+        color: #DE0E0E;
+    }
+
+        .fa-trash:hover {
+            color: #A00C0C;
+        }
+
+    .fa-search-plus {
+        color: #0F55F4;
+    }
+
+        .fa-search-plus:hover {
+            color: #0A3BAA;
+        }
+</style>
