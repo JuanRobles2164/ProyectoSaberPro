@@ -46,16 +46,11 @@
 
             </dl>
 
-            @using (Html.BeginForm("DeleteAlumnoConfirmed", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
+            <a href="@Url.Action("DeleteAlumnoConfirmed", new { id = Model.ID })">
+                <i class="fa fa-trash"></i>
+            </a>
 
-        <div class="form-actions no-color">
-            &nbsp; &nbsp; &nbsp;
-            <input type="submit" value="Delete" class="boton alternativo" /> &nbsp; &nbsp; &nbsp;
             @Html.ActionLink("Volver a la lista", "IndexAlumnos", "Administrador", new { @class = "btn btn-primary" })
-        </div>
-            }
         </div>
     </div>
     <style>

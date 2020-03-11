@@ -45,17 +45,14 @@
                 </dd>
 
             </dl>
-
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            &nbsp; &nbsp; &nbsp;
-            <input type="submit" value="Delete" class="boton alternativo" /> &nbsp; &nbsp; &nbsp;
+                <div class="form-actions">
+                    &nbsp; &nbsp; &nbsp;
+                    <a href="@Url.Action("DeleteDocenteConfirmed", new { id = Model.ID })">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp;
+                </div>
             @Html.ActionLink("Back to List", "Index", "Administrador", new { @class = "btn btn-primary" })
-        </div>
-            }
         </div>
     </div>
 <style>

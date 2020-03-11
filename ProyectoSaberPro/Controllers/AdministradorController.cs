@@ -157,7 +157,9 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
-        public ActionResult EditDocente([Bind(Include = "ID,Correo")] Docente docente)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditDocente([Bind(Include = "ID,Correo,Nombres")] Docente docente)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +169,9 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(docente);
         }
-        public ActionResult EditAlumno([Bind(Include = "ID,Correo")] Alumno alumno)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditAlumno([Bind(Include = "ID,Correo,Nombres,Apellidos,Semestre,Username")] Alumno alumno)
         {
             if (ModelState.IsValid)
             {
@@ -227,8 +231,6 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // POST: Administrador/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteAlumnoConfirmed(int id)
         {
             Alumno alumno = db.Alumnos.Find(id);
@@ -254,14 +256,12 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // POST: Administrador/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteDocenteConfirmed(int id)
         {
             Docente docente = db.Docentes.Find(id);
             db.Docentes.Remove(docente);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexDocentes");
         }
         #endregion
 

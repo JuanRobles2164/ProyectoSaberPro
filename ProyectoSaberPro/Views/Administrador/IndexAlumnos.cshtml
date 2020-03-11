@@ -22,28 +22,29 @@
             <th>
                 @Html.DisplayNameFor(model => model.Semestre)
             </th>
-            <th>Acciones</th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Correo)
+                     @Html.DisplayFor(modelItem => item.Correo)
                 </td>
                 <td>
-                    &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Nombres)
+                     @Html.DisplayFor(modelItem => item.Nombres)
                 </td>
                 <td>
-                    &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Apellidos)
+                     @Html.DisplayFor(modelItem => item.Apellidos)
                 </td>
                 <td>
-                    &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Semestre)
+                     @Html.DisplayFor(modelItem => item.Semestre)
                 </td>
                 <td align="right">
                     <a href="@Url.Action("EditAlumno", new { id = item.ID })">
                         <i class="fa fa-pencil"></i>
-                    </a>
+                    </a> 
+                    
                     <a href="@Url.Action("DetailsAlumno", new { id = item.ID })">
                         <i class="fa fa-search-plus"></i>
                     </a>
@@ -79,23 +80,23 @@
         color: #EFD30B;
     }
 
-        .fa-pencil:hover {
-            color: #D3B70B;
-        }
+    .fa-pencil:hover {
+        color: #D3B70B;
+    }
 
     .fa-trash {
         color: #DE0E0E;
     }
 
-        .fa-trash:hover {
-            color: #A00C0C;
-        }
+    .fa-trash:hover {
+        color: #A00C0C;
+    }
 
     .fa-search-plus {
         color: #0F55F4;
     }
 
-        .fa-search-plus:hover {
-            color: #0A3BAA;
-        }
+    .fa-search-plus:hover {
+        color: #0A3BAA;
+    }
 </style>

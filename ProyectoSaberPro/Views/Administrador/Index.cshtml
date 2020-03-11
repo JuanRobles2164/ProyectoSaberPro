@@ -24,7 +24,7 @@
         {
             <tr>
                 <td style="display: flex; justify-content: center;align-content: center;flex-direction: column;">
-                    &nbsp;&nbsp; @Html.DisplayFor(modelItem => item.Correo)
+                    @Html.DisplayFor(modelItem => item.Correo)
                 </td>
                 <td align="right">
                     <a href="@Url.Action("Edit", new { id = item.ID })">

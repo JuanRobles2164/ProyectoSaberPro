@@ -46,13 +46,11 @@
             </dl>
         </div>
         <p>
-            &nbsp;
             <a href="@Url.Action("EditAlumno", new { id = Model.ID })">
                 <span class="alternativo">Editar</span>
             </a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="@Url.Action("IndexAlumno", new { id = Model.ID, @class = "btn btn-primary"})">
-                <span class="boton">Back to List</span>
+            <a href="@Url.Action("IndexAlumnos", new { @class="btn btn-primary" })">
+                <span class="boton">Volver</span>
             </a>
         </p>
     </div>

@@ -10,7 +10,7 @@
         <!--"funcion"/"controller"/new { ReturnUrl = ViewBag.ReturnUrl }/metodo/new { .arroba.class = "form-horizontal", role = "form" }-->>
         @using (Html.BeginForm("EditAlumno", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
-            @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
                 <h4>Alumno</h4>
@@ -47,6 +47,13 @@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Semestre, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Semestre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

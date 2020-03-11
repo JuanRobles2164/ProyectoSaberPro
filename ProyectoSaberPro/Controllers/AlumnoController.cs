@@ -57,7 +57,7 @@ namespace ProyectoSaberPro.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Correo,Nombres,Apellidos,Semestre")] Alumno alumno)
+        public ActionResult Edit([Bind(Include = "ID,Correo,Nombres,Apellidos,Semestre,Username")] Alumno alumno)
         {
             if (ModelState.IsValid)
             {
