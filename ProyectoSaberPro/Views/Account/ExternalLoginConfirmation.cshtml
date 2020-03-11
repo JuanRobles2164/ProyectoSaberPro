@@ -27,7 +27,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+
             @Html.DropDownListFor(m => m.Role, new SelectList(ViewBag.Roles, "Value", "Text"), new { @class ="form-control"})
+            @*@Html.DropDownList("Roles", new List<SelectListItem> {
+                new SelectListItem{ Text = "Alumno", Value="2", Selected = true},
+                new SelectListItem{ Text = "Docente", Value="1"}
+            })*@
         </div>
 
     </div>

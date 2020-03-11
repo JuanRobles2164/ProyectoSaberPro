@@ -16,6 +16,7 @@ namespace ProyectoSaberPro.Controllers
         //Prueba de git al proyecto
 
         #region GET: Usuarios
+        [Authorize(Roles =("Administrador"))]
         public ActionResult Index()
         {
             return View(db.Administradores.ToList());

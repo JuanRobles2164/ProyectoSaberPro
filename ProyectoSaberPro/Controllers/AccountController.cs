@@ -174,6 +174,7 @@ namespace ProyectoSaberPro.Controllers
                 
                 if (result.Succeeded)
                 {
+                    result = await UserManager.AddToRoleAsync(user.Id, "Administrador");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
@@ -371,7 +372,7 @@ namespace ProyectoSaberPro.Controllers
                     {
                         if (role.Name != "Administrador")
                         {
-                            list.Add(new SelectListItem() { Value = role.Name, Text = role.Id});
+                            list.Add(new SelectListItem() { Value = role.Id, Text = role.Name});
                         }
                     }
                     ViewBag.Roles = list;
@@ -388,27 +389,7 @@ namespace ProyectoSaberPro.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                ApplicationDbContext db = new ApplicationDbContext();
-                var roleAssignment = db.Roles.ToList();
-
-                if (model.Role == "Alumno")
-                {
-
-                    //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
-                    Alumno al = new Alumno { Correo = model.Email };
-                    db.Alumnos.Add(al);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Alumno");
-                }
-                if (model.Role == "Docente")
-                {
-                    //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
-                    Docente doc = new Docente { Correo = model.Email };
-                    db.Docentes.Add(doc);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Docente");
-                }
-                db.Dispose();
+                
                 return RedirectToAction("Index", "Manage");
             }
 
@@ -429,9 +410,28 @@ namespace ProyectoSaberPro.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    result = await UserManager.AddToRoleAsync(user.Id, model.Role);
                     if (result.Succeeded)
                     {
+                        ApplicationDbContext db = new ApplicationDbContext();
+                        result = await UserManager.AddToRoleAsync(user.Id, model.Role);
+                        if (model.Role == "2")
+                        {
+
+                            //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
+                            Alumno al = new Alumno { Correo = model.Email };
+                            db.Alumnos.Add(al);
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Alumno");
+                        }
+                        if (model.Role == "1")
+                        {
+                            //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
+                            Docente doc = new Docente { Correo = model.Email };
+                            db.Docentes.Add(doc);
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Docente");
+                        }
+                        db.Dispose();
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
