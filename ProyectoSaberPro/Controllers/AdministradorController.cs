@@ -76,7 +76,7 @@ namespace ProyectoSaberPro.Controllers
         #region GET: Administrador/Create
         public ActionResult Create()
         {
-            return View();
+            return RedirectToAction("Register", "Account");
         }
 
         // POST: Administrador/Create
