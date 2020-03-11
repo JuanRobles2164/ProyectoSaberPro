@@ -190,6 +190,10 @@ namespace ProyectoSaberPro.Controllers
         #region deleteAdmin
         public ActionResult Delete(int? id)
         {
+            if ((db.Administradores.ToList()).Count <= 1)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -92,7 +92,7 @@ namespace ProyectoSaberPro.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Administrador");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -175,13 +175,17 @@ namespace ProyectoSaberPro.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
-
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    Administrador admin = new Administrador { Correo = model.Email, Username = model.Email };
+                    db.Administradores.Add(admin);
+                    db.SaveChanges();
+                    db.Dispose();
                     return RedirectToAction("Index", "Administrador");
                 }
                 AddErrors(result);
@@ -365,7 +369,10 @@ namespace ProyectoSaberPro.Controllers
                     List<SelectListItem> list = new List<SelectListItem>();
                     foreach (var role in RoleManager.Roles)
                     {
-                        list.Add(new SelectListItem() { Value = role.Name, Text = role.Name});
+                        if (role.Name != "Administrador")
+                        {
+                            list.Add(new SelectListItem() { Value = role.Name, Text = role.Id});
+                        }
                     }
                     ViewBag.Roles = list;
                     return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
@@ -381,6 +388,27 @@ namespace ProyectoSaberPro.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+                ApplicationDbContext db = new ApplicationDbContext();
+                var roleAssignment = db.Roles.ToList();
+
+                if (model.Role == "Alumno")
+                {
+
+                    //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
+                    Alumno al = new Alumno { Correo = model.Email };
+                    db.Alumnos.Add(al);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Alumno");
+                }
+                if (model.Role == "Docente")
+                {
+                    //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
+                    Docente doc = new Docente { Correo = model.Email };
+                    db.Docentes.Add(doc);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Docente");
+                }
+                db.Dispose();
                 return RedirectToAction("Index", "Manage");
             }
 
@@ -398,28 +426,10 @@ namespace ProyectoSaberPro.Controllers
                     return RedirectToAction("InvalidAccount", "Home");
                 }
                 var result = await UserManager.CreateAsync(user);
-                ApplicationDbContext db = new ApplicationDbContext();
-                var roleAssignment = db.Roles.ToList();
-                
-                if (model.Role == "Alumno")
-                {
-                    
-                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
-                    Alumno al = new Alumno { Correo = model.Email };
-                    db.Alumnos.Add(al);
-                    db.SaveChanges();
-                }
-                if (model.Role == "Docente")
-                {
-                    result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
-                    Docente doc = new Docente { Correo = model.Email };
-                    db.Docentes.Add(doc);
-                    db.SaveChanges();
-                }
-                db.Dispose();
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await UserManager.AddToRoleAsync(user.Id, model.Role);
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
