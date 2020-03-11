@@ -4,54 +4,82 @@
     ViewBag.Title = "Eliminar alumno";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
+    <div class="margen">
+        <h2>Eliminar Alumno</h2>
 
-<h2>Eliminar Alumno</h2>
+        <h3>¿Estás seguro que desear eliminar este usuario?</h3>
+        <div>
+            <h4>Alumno</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </dt>
 
-<h3>¿Estás seguro que desear eliminar este usuario?</h3>
-<div>
-    <h4>Alumno</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Correo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Correo)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Correo)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombres)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nombres)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombres)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Apellidos)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Apellidos)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Apellidos)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Semestre)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Semestre)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Semestre)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Semestre)
-        </dd>
+            </dl>
 
-    </dl>
-
-    @using (Html.BeginForm("DeleteAlumnoConfirmed", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
-        @Html.AntiForgeryToken()
+            @using (Html.BeginForm("DeleteAlumnoConfirmed", "Administrador", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Volver a la lista", "IndexAlumnos")
+            &nbsp; &nbsp; &nbsp;
+            <input type="submit" value="Delete" class="boton alternativo" /> &nbsp; &nbsp; &nbsp;
+            @Html.ActionLink("Volver a la lista", "IndexAlumnos", "Administrador", new { @class = "btn btn-primary" })
         </div>
-    }
-</div>
+            }
+        </div>
+    </div>
+    <style>
+        .margen {
+            margin: 15px 100px 5px 100px;
+            text-align: justify;
+        }
+
+        .dl-horizontal {
+            margin: 15px 0px 30px 0px;
+        }
+
+        .boton.alternativo {
+            background-color: transparent;
+            color: #810808;
+            border: 2px solid #810808;
+            border-radius: 6px;
+            width: 90px;
+            height: 34px
+        }
+
+            .boton.alternativo:hover {
+                background-color: #810808;
+                color: #FFFFFF;
+                text-decoration: none;
+            }
+    </style>
