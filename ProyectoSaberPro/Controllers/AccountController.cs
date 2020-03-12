@@ -372,7 +372,7 @@ namespace ProyectoSaberPro.Controllers
                     {
                         if (role.Name != "Administrador")
                         {
-                            list.Add(new SelectListItem() { Value = role.Id, Text = role.Name});
+                            list.Add(new SelectListItem() { Value = role.Name, Text = role.Name});
                         }
                     }
                     ViewBag.Roles = list;
@@ -387,11 +387,11 @@ namespace ProyectoSaberPro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            /*if (User.Identity.IsAuthenticated)
             {
                 
                 return RedirectToAction("Index", "Manage");
-            }
+            }*/
 
             if (ModelState.IsValid)
             {
@@ -414,7 +414,7 @@ namespace ProyectoSaberPro.Controllers
                     {
                         ApplicationDbContext db = new ApplicationDbContext();
                         result = await UserManager.AddToRoleAsync(user.Id, model.Role);
-                        if (model.Role == "2")
+                        if (model.Role == "Alumno")
                         {
 
                             //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
@@ -423,7 +423,7 @@ namespace ProyectoSaberPro.Controllers
                             db.SaveChanges();
                             return RedirectToAction("Index", "Alumno");
                         }
-                        if (model.Role == "1")
+                        if (model.Role == "Docente")
                         {
                             //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                             Docente doc = new Docente { Correo = model.Email };
