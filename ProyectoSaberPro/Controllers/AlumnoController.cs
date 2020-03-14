@@ -40,11 +40,22 @@ namespace ProyectoSaberPro.Controllers
         // GET: Alumno/Edit/5
         public ActionResult Edit(string email)
         {
+            
             if (email == null)
             {
+                var test = User.Identity.Name;
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumno alumno = db.Alumnos.First(x => x.Correo == email);
+            Alumno alumno = null;
+            try
+            {
+                alumno = db.Alumnos.First(x => x.Correo == email);
+            }
+            catch (Exception e)
+            {
+                return HttpNotFound(e.Message);
+            }
+            
             if (alumno == null)
             {
                 return HttpNotFound();
