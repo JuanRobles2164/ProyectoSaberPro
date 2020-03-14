@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -416,23 +417,24 @@ namespace ProyectoSaberPro.Controllers
                         result = await UserManager.AddToRoleAsync(user.Id, model.Role);
                         if (model.Role == "Alumno")
                         {
-
                             //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                             Alumno al = new Alumno { Correo = model.Email };
                             db.Alumnos.Add(al);
                             db.SaveChanges();
+                            db.Dispose();
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             return RedirectToAction("Index", "Alumno");
                         }
                         if (model.Role == "Docente")
                         {
-                            //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
                             Docente doc = new Docente { Correo = model.Email };
                             db.Docentes.Add(doc);
                             db.SaveChanges();
+                            db.Dispose();
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                             return RedirectToAction("Index", "Docente");
                         }
-                        db.Dispose();
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        
                         return RedirectToLocal(returnUrl);
                     }
                 }
