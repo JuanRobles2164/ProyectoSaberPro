@@ -335,7 +335,7 @@
     <Content Include="Views\Administrador\DetailsDocente.cshtml" />
     <Content Include="Views\Administrador\DeleteDocente.cshtml" />
     <Content Include="Views\Shared\_LayoutDocente.cshtml" />
-    <Content Include="Views\Administration\CreateRole.cshtml" />
+    <Content Include="Views\Shared\_LayoutAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

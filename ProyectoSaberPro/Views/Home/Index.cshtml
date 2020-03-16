@@ -4,18 +4,32 @@
 }
 @ViewBag.Message
 @model LoginViewModel
+<head>
+    <meta charset="utf-8">
+    <style>
 
+        html {
+            height: 95%;
+            width: 100%;
+        }
+
+        body {
+            background: #FFFFFF url('../../Pictures/logo-udi-web.png') no-repeat bottom center;
+            background-size: 20% 20%;
+        }
+    </style>
+</head>
 <center>
     <div class="card">
         <div class="row">
             <div class="col-md-12">
                 <section>
                     <from asp-controller="Home" asp-action="Index" method="post">
-                        <h4>Iniciar Sesi&oacute;n</h4>
+                        <h3>Iniciar Sesi&oacute;n</h3>
                         <br />
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Docentes
+                                Docente
                             </button>
                             <div class="dropdown-menu">
                                 <section id="socialLoginForm">
@@ -26,7 +40,7 @@
                         <br /><br />
                         <div class="btn-group">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Estudiantes
+                                Estudiante
                             </button>
                             <div class="dropdown-menu">
                                 <section id="socialLoginForm">
@@ -41,7 +55,9 @@
                             </button>
                             <div class="dropdown-menu">
                                 <section id="socialLoginForm">
-                                    @Html.ActionLink("Iniciar sesión", "Login")
+                                    <center>
+                                        @Html.ActionLink("Iniciar sesión", "Login", "Account", new { @class = "btn btn-default" })
+                                    </center>
                                 </section>
                             </div>
 
