@@ -23,7 +23,6 @@ namespace ProyectoSaberPro.Controllers
             } else {
                 return View();
             }
-            
         }
         public ActionResult RegistroPrimigenio()
         {

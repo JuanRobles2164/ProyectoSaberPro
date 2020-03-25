@@ -21,10 +21,12 @@ namespace ProyectoSaberPro.Controllers
         {
             return View(db.Administradores.ToList());
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult IndexAlumnos()
         {
             return View(db.Alumnos.ToList());
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult indexDocentes()
         {
             return View(db.Docentes.ToList());
@@ -33,6 +35,7 @@ namespace ProyectoSaberPro.Controllers
         #endregion
 
         #region  GET: Administrador/Details/5
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult DetailsAlumno(int? id)
         {
             if (id == null)
@@ -59,6 +63,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(alumno);
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult DetailsDocente(int? id)
         {
             if (id == null)
@@ -75,6 +80,7 @@ namespace ProyectoSaberPro.Controllers
         #endregion
 
         #region GET: Administrador/Create
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult Create()
         {
             return RedirectToAction("Register", "Account");
@@ -85,6 +91,8 @@ namespace ProyectoSaberPro.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult Create([Bind(Include = "ID,Correo")] Administrador administrador)
         {
             if (ModelState.IsValid)
@@ -101,6 +109,8 @@ namespace ProyectoSaberPro.Controllers
         #region Edit
 
         #region GET: Administrador/Edit/5
+        [Authorize(Roles = ("Administrador"))]
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -114,6 +124,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(administrador);
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult EditAlumno(int? id)
         {
             if (id == null)
@@ -127,6 +138,7 @@ namespace ProyectoSaberPro.Controllers
             }
             return View(alumno);
         }
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult EditDocente(int? id)
         {
             if (id == null)
@@ -148,6 +160,7 @@ namespace ProyectoSaberPro.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult Edit([Bind(Include = "ID,Correo")] Administrador administrador)
         {
             if (ModelState.IsValid)
@@ -160,6 +173,7 @@ namespace ProyectoSaberPro.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult EditDocente([Bind(Include = "ID,Correo,Nombres")] Docente docente)
         {
             if (ModelState.IsValid)
@@ -172,6 +186,7 @@ namespace ProyectoSaberPro.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult EditAlumno([Bind(Include = "ID,Correo,Nombres,Apellidos,Semestre,Username")] Alumno alumno)
         {
             if (ModelState.IsValid)
@@ -189,6 +204,7 @@ namespace ProyectoSaberPro.Controllers
         #region GET: Administrador/Delete/5
 
         #region deleteAdmin
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult Delete(int? id)
         {
             if ((db.Administradores.ToList()).Count <= 1)
@@ -199,6 +215,7 @@ namespace ProyectoSaberPro.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Administrador administrador = db.Administradores.Find(id);
             if (administrador == null)
             {
@@ -210,10 +227,13 @@ namespace ProyectoSaberPro.Controllers
         // POST: Administrador/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = ("Administrador"))]
         public ActionResult DeleteConfirmed(int id)
         {
             Administrador administrador = db.Administradores.Find(id);
             db.Administradores.Remove(administrador);
+            var user = db.Users.First(x => x.Email == administrador.Correo);
+            
             db.SaveChanges();
             return RedirectToAction("Index");
         }

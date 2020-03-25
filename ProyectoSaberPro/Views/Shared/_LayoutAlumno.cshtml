@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ProyectoSaberPro.Models.Alumno>
-@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +20,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    @Html.ActionLink("Inicio", "Index", "Alumno", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Editar Información", "Edit", "Alumno", new { email = User.Identity.GetUserName() }, new { area = "",  @class = "navbar-brand" });
-           </div>
+                @Html.ActionLink("Inicio", "Index", "Alumno", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Editar Información", "Edit", "Alumno", new { email = User.Identity.GetUserName() }, new { area = "", @class = "navbar-brand" });
+                @Html.Partial("_LoginPartial")
+            </div>
             <div class="navbar-collapse collapse">
 
             </div>

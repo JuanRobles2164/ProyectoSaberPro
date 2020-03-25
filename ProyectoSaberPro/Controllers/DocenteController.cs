@@ -14,6 +14,7 @@ namespace ProyectoSaberPro.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        [Authorize(Roles = "Docente")]
         // GET: Docente
         public ActionResult Index()
         {
@@ -21,6 +22,7 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // GET: Docente/Edit/5
+        [Authorize(Roles ="Docente")]
         public ActionResult Edit(string email)
         {
             if (email == null)
@@ -40,6 +42,7 @@ namespace ProyectoSaberPro.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Docente")]
         public ActionResult Edit([Bind(Include = "ID,Correo,Nombres,Apellidos,Username")] Docente docente)
         {
             if (ModelState.IsValid)
@@ -52,6 +55,7 @@ namespace ProyectoSaberPro.Controllers
         }
 
         // GET: Docente/Delete/5
+        [Authorize(Roles = "Docente")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -69,6 +73,7 @@ namespace ProyectoSaberPro.Controllers
         // POST: Docente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             Docente docente = db.Docentes.Find(id);
@@ -76,7 +81,6 @@ namespace ProyectoSaberPro.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

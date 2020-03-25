@@ -358,7 +358,9 @@ namespace ProyectoSaberPro.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    ApplicationDbContext db = new ApplicationDbContext();
+                    Alumno alumno = db.Alumnos.First(x => x.Correo == loginInfo.Email);
+                    return RedirectToLocal(returnUrl, alumno);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -414,7 +416,9 @@ namespace ProyectoSaberPro.Controllers
                     if (result.Succeeded)
                     {
                         ApplicationDbContext db = new ApplicationDbContext();
+                        user.Email = model.Email;
                         result = await UserManager.AddToRoleAsync(user.Id, model.Role);
+                        
                         if (model.Role == "Alumno")
                         {
                             //result = await UserManager.AddToRoleAsync(user.Roles.ToString(), model.Role);
@@ -427,7 +431,7 @@ namespace ProyectoSaberPro.Controllers
                         }
                         if (model.Role == "Docente")
                         {
-                            Docente doc = new Docente { Correo = model.Email };
+                            Docente doc = new Docente { Correo = user.Email };
                             db.Docentes.Add(doc);
                             db.SaveChanges();
                             db.Dispose();
@@ -502,6 +506,18 @@ namespace ProyectoSaberPro.Controllers
             }
         }
 
+        private ActionResult RedirectToLocal(string returnUrl, Alumno alumno)
+        {
+            if (alumno == null)
+            {
+                return RedirectToAction("Index", "Docente");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Alumno");
+            }
+            
+        }
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
